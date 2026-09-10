@@ -1,0 +1,19 @@
+name: app
+type: php:8.2
+
+web:
+  locations:
+    "/":
+      root: "public"
+      index:
+        - index.php
+      allow: true
+      passthru: "/index.php"
+    "/storage":
+      root: "storage/app/public"
+      scripts: false
+
+hooks:
+  build: |
+    set -e
+    composer install --no-dev --optimize-autoloader
