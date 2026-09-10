@@ -2,7 +2,7 @@
 # AI can make mistakes. Please modify this file to suit your needs.
 applications:
   app:
-    type: php:8.5
+    type: php:8.2
 
     build:
       flavor: none
@@ -39,6 +39,7 @@ applications:
     runtime:
       extensions:
         - pdo_mysql
+        - redis
 
     variables:
       env:
