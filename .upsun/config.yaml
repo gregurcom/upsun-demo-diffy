@@ -16,7 +16,7 @@ applications:
         echo >> .environment 'export APP_KEY="base64:$(echo $PLATFORM_PROJECT_ENTROPY | base32 --decode | base64)"'
 
         # Set DB_URL for MariaDB service
-        echo >> .environment 'export DB_URL="mysql://$DB_USERNAME:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_PATH"'
+        echo >> .environment 'export DATABASE_URL="mysql://$DB_USERNAME:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_PATH"'
 
         # Set APP_URL from primary route
         echo >> .environment 'export APP_URL=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r "to_entries[] | select(.value.primary == true) | .key")'
@@ -46,7 +46,6 @@ applications:
         APP_ENV: production
         APP_DEBUG: false
         DB_CONNECTION: mysql
-        DB_URL: ${DB_URL}
 
     relationships:
       db: {}
