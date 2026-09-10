@@ -46,6 +46,11 @@ applications:
         APP_ENV: production
         APP_DEBUG: false
         DB_CONNECTION: mysql
+        DB_HOST: $DB_HOST
+        DB_PORT: $DB_PORT
+        DB_DATABASE: $DB_PATH
+        DB_USERNAME: $DB_USERNAME
+        DB_PASSWORD: $DB_PASSWORD
 
     relationships:
       db: {}
