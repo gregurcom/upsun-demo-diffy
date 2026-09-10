@@ -2,7 +2,7 @@
 # AI can make mistakes. Please modify this file to suit your needs.
 applications:
   app:
-    type: php:8.2
+    type: php:8.0
 
     build:
       flavor: none
