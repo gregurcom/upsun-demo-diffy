@@ -1,0 +1,28 @@
+name: "DiffyPullRequestTest"
+run-name: "DiffyPullRequestTest"
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  trigger-diffy-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Wait for psh and get target url'
+        id: get-target-url
+        uses: platformsh/gha-retrieve-psh-prenv-url@main
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 'Install and Run Diffy'
+        id: install-diffy-cli
+        shell: bash
+        env:
+          diffy_api_key: '${{ secrets.DIFFY_API_KEY }}'
+          diffy_project_id: '${{ secrets.DIFFY_PROJECT_ID }}'
+        run: |
+          wget -O /usr/local/bin/diffy https://github.com/diffywebsite/diffy-cli/releases/latest/download/diffy.phar
+          chmod a+x /usr/local/bin/diffy
+          diffy auth:login $diffy_api_key
+          diffy project:compare $diffy_project_id prod custom --env2Url="${{ steps.get-target-url.outputs.target_url }}" --commit-sha="${{ github.event.pull_request.head.sha }}"
