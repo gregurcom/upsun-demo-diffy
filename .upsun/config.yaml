@@ -45,7 +45,7 @@ applications:
       env:
         APP_ENV: production
         APP_DEBUG: false
-        DB_CONNECTION: mariadb
+        DB_CONNECTION: mysql
 
     relationships:
       db: {}
