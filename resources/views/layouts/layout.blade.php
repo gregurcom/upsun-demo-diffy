@@ -61,7 +61,7 @@
             @section('footer')
                 <footer class="footer mt-auto py-3 text-center">
                     <div class="container">
-                        <span class="text-muted">Copyright123 © {{ date("Y") }} Weather App</span>
+                        <span class="text-muted">Copyright © {{ date("Y") }} Weather Applications</span>
                     </div>
                 </footer>
             @show
