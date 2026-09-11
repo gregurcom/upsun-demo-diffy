@@ -3,6 +3,9 @@
 applications:
   app:
     type: php:8.0
+    dependencies:
+      nodejs: 16
+
 
     build:
       flavor: none
@@ -11,6 +14,9 @@ applications:
       build: |
         set -ex
         composer install --no-progress --no-interaction --optimize-autoloader --no-dev
+        npm ci
+        npm run production
+
 
         # Generate Laravel APP_KEY from platform entropy
         echo >> .environment 'export APP_KEY="base64:$(echo $PLATFORM_PROJECT_ENTROPY | base32 --decode | base64)"'
