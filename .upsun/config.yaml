@@ -4,8 +4,6 @@ applications:
   app:
     type: php:8.0
     dependencies:
-      nodejs: 16
-
 
     build:
       flavor: none
